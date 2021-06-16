@@ -1,0 +1,14 @@
+name: License analyzer
+on:
+  push:
+    branches: [master]
+jobs:
+  licenses:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+      - uses: sorenmat/cdxgen@master
+        with:
+          server_url: https://license-server.eu-west-1.test.ts.sv/api/v1/bom
+          token: ${{ secrets.LICENSESERVER_TOKEN }}
+          fetch_licenses: "true"
